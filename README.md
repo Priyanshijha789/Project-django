@@ -59,29 +59,22 @@ A full-featured Hospital Management System built using **Django**, **HTML**, **C
 
 
 ## 🧑‍💻 Setup Instructions
-
-1. **Clone the repository**
+   
    ```bash
+**Clone the repository**
    git clone https://github.com/Priyanshijha789/Project-django.git
    cd Project-django
-2. **Create virtual environment**
-    ```bash
+   #Create virtual environment
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-3.**install independencies**
-    ```bash
+   #install independencies
    pip install -r requirements.txt
-4.**Run migrations**
-   ```bash
-python manage.py makemigrations
-python manage.py migrate
-5.**create superuser**
-   ```bash
-python manage.py createsuperuser
-6.**Start the development server**
-   ```bash
-python manage.py runserver
-4.**Visit the app**
-   ```bash
-(http://127.0.0.1:8000/)
+   #Run migrations
+   python manage.py makemigrations
+   python manage.py migrate
+   #create superuser
+   python manage.py createsuperuser
+   #Start the development server
+   python manage.py runserver
+   Visit the app(http://127.0.0.1:8000/)
 
