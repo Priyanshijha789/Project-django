@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary">📝 Current & Past Admissions</h2>
+  <table class="table table-bordered">
+    <thead class="table-primary">
+      <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Room</th>
+        <th>Status</th>
+        <th>Admitted On</th>
+        <th>Discharged On</th>
+		<th>Discharge button</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for adm in admissions %}
+      <tr>
+        <td>{{ adm.patient.user.username }}</td>
+        <td>{{ adm.doctor.user.username }}</td>
+        <td>{{ adm.room_number }}</td>
+        <td>{{ adm.status }}</td>
+        <td>{{ adm.admission_date }}</td>
+        <td>{{ adm.discharge_date|default:"-" }}</td>
+		<td>
+  {% if adm.status == 'Admitted' %}
+    <a href="{% url 'staff:discharge_patient' adm.id %}" class="btn btn-sm btn-danger"
+       onclick="return confirm('Discharge this patient?');">Discharge</a>
+  {% else %}
+    <span class="text-success">✔ Discharged</span>
+  {% endif %}
+</td>
+      </tr>
+	  
+	  
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

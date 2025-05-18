@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="text-success">Appointment Booked Successfully! 🎉</h2>
+    <p>Your appointment request has been submitted. We will notify you once it is approved.</p>
+    
+    <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Another Appointment</a>
+    <a href="{% url 'dashboard:patient_dashboard' %}" class="btn btn-secondary">Go to Dashboard</a>
+</div>
+{% endblock %}

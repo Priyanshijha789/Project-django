@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>My Room Bookings</h2>
+    <table class="table table-bordered">
+        <tr>
+            <th>Room</th>
+            <th>Booking Date</th>
+            <th>Discharge Date</th>
+            <th>Status</th>
+        </tr>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.room }}</td>
+            <td>{{ booking.booking_date }}</td>
+            <td>{{ booking.discharge_date|default:"--" }}</td>
+            <td>{{ booking.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

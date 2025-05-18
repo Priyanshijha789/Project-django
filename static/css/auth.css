@@ -1,0 +1,85 @@
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #eef5ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form Container */
+.auth-container {
+    background: white;
+    padding: 30px;
+    width: 380px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h2 {
+    color: #005f99;
+    margin-bottom: 20px;
+}
+
+/* Input Group Styling */
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+    margin-bottom: 15px;
+}
+
+.input-group i {
+    padding: 12px;
+    background: #f1f1f1;
+    color: gray;
+    border-right: 1px solid #ccc;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #005f99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #00487d;
+}
+
+/* Signup Link */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+a {
+    color: #005f99;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

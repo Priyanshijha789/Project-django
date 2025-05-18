@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        animation: fadeIn 1s ease-in;
+        margin: 0;
+        padding: 0;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes glow {
+        0% { text-shadow: 0 0 5px #fff, 0 0 10px #0d6efd; }
+        100% { text-shadow: 0 0 15px #fff, 0 0 25px #0d6efd; }
+    }
+
+    .marquee-text {
+        font-weight: bold;
+        animation: glow 2s infinite alternate;
+    }
+
+    .sidebar {
+    width: 250px;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    background-color: #0d6efd;
+    color: white;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+
+    .sidebar h5 {
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .sidebar a {
+        display: block;
+        padding: 12px 20px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+        background-color: #0b5ed7;
+        text-decoration: none;
+    }
+
+    .content {
+        margin-left: 20px;
+        padding: 20px;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h5 class="text-center text-white mb-4">Receptionist Panel</h5>
+    <a href="{% url 'dashboard:receptionist_dashboard' %}">Dashboard</a>
+    <a href="{% url 'receptionist:today_appointments' %}">Appointments</a>
+    <a href="{% url 'receptionist:add_patient' %}">Add Patient</a>
+    <a href="{% url 'receptionist:patient_list' %}">View Patients</a>
+    <a href="{% url 'logout' %}" class="text-warning">Logout</a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+
+    <!-- Marquee -->
+    <div class="bg-primary text-white p-2 rounded mt-2 mb-4">
+        <marquee behavior="scroll" direction="left" scrollamount="6" class="fs-5 marquee-text">
+            Welcome to {{ receptionist.user }}'s Dashboard – Manage Appointments and Patients Smoothly!
+        </marquee>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row">
+        {% for label, value, color in stats %}
+        <div class="col-md-3 mb-3">
+            <div class="card text-white shadow text-center" style="background-color: {{ color }};">
+                <div class="card-body">
+                    <h5>{{ label }}</h5>
+                    <h3 class="counter" data-target="{{ value }}">0</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Chart -->
+    <div class="card shadow mt-4 animate__animated animate__fadeInUp">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title text-center">📈 Appointment Status Overview</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="appointmentsChart"></canvas>
+        </div>
+    </div>
+
+</div> <!-- End of .content -->
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('appointmentsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Approved', 'Pending', 'Rejected'],
+            datasets: [{
+                label: 'Appointments',
+                data: [{{ approved_count }}, {{ pending_count }}, {{ rejected_count }}],
+                backgroundColor: ['#0d6efd', '#0b5ed7', '#31d2f2'],
+                borderColor: ['#0d6efd', '#0b5ed7', '#31d2f2'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: { duration: 1000 },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+</script>
+
+<!-- Counter animation -->
+<script>
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const update = () => {
+            const current = +counter.innerText;
+            const step = Math.ceil(target / 30);
+            if (current < target) {
+                counter.innerText = Math.min(current + step, target);
+                setTimeout(update, 30);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        update();
+    });
+</script>
+
+{% endblock %}

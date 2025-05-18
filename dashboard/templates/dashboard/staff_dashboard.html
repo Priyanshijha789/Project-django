@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  body {
+    animation: fadeIn 1s ease-in;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    background-color: #0d6efd;
+    color: white;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+  .sidebar a {
+    color: white;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    background-color: #0b5ed7;
+    border-radius: 4px;
+  }
+  .main-content {
+    margin-left:200px;
+    padding: 20px;
+	margin-top:30px;
+  }
+  .low-stock {
+    background-color: #f8d7da !important;
+  }
+</style>
+
+<div class="row">
+  <!-- Sidebar -->
+  <div class="col-md-2 sidebar">
+    <h4 class="text-center">👩‍⚕️ Staff Panel</h4>
+    <hr>
+    <a href="{% url 'dashboard:staff_dashboard' %}">🏠 Dashboard</a>
+    <a href="{% url 'staff_requests' %}">📥 Doctor Requests</a>
+    
+	<a href="{% url 'staff:admit_patient' %}"><i class="fa-solid fa-bed"></i> Admit Patient</a>
+	
+	<a href="{% url 'staff:admissions_list' %}"><i class="fa-brands fa-accessible-icon"></i> Admission list</a>
+	<a href="{% url 'staff:create_bill' %}">🧾Create Bill </a>
+	<a href="{% url 'staff:bill_list' %}">📒 Bill list </a>
+	<a href="{% url 'logout' %}">🚪 Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="col-md-10 main-content">
+    <h2 class="text-primary mb-4">💼 Staff Dashboard – Medicine Inventory</h2>
+
+    <!-- Medicine Table -->
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead class="table-primary">
+            <tr>
+              <th>Sr no.</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for med in medicines %}
+            <tr class="{% if med.stock < 10 %}low-stock{% endif %}">
+              <td>{{ forloop.counter }}</td>
+              <td>{{ med.name }}</td>
+              <td>₹{{ med.price }}</td>
+              <td>{{ med.stock }}</td>
+              <td>
+                <a href="{% url 'update_stock' med.id %}" class="btn btn-sm btn-warning">Update</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center">No medicines found.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="card shadow mt-4">
+      <div class="card-header bg-primary text-white">
+        <h5 class="text-center">📊 Stock Overview</h5>
+      </div>
+      <div class="card-body">
+        <canvas id="stockChart" height="120"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('stockChart').getContext('2d');
+  const stockChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [{% for med in medicines %}'{{ med.name }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+      datasets: [{
+        label: 'Stock Level',
+        data: [{% for med in medicines %}{{ med.stock }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+        backgroundColor: 'rgba(13, 110, 253, 0.7)',
+        borderColor: 'rgba(13, 110, 253, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      animation: { duration: 1000 },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+</script>
+
+{% endblock %}

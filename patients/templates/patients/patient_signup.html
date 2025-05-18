@@ -1,0 +1,13 @@
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter Username" required>
+    <input type="password" name="password" placeholder="Enter Password" required>
+    <input type="number" name="age" placeholder="Enter Age" required>
+    <input type ="email" name="email" placeholder = "xyz23@gmail.com" required>
+    <select name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <textarea name="medical_history" placeholder="Enter Medical History"></textarea>
+    <button type="submit">Sign Up</button>
+</form>

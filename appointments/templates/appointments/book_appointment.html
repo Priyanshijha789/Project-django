@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Book an Appointment</h2>
+
+    <!-- Success message -->
+    {% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST" class="form">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="id_patient">Patient Name:</label>
+            <input type="text" class="form-control" value="{{ request.user.username }}" readonly>
+        </div>
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Book Appointment</button>
+    </form>
+</div>
+{% endblock %}

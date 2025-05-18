@@ -1,0 +1,205 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif; /* Changed to a modern font */
+    margin: 0;
+    padding: 0;
+    background: #e0f7fa; /* Light Blue Background */
+    color: #333;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    background: #00796b; /* Dark Blue-Green */
+    color: white;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    max-width: 80px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px; /* Increased font size */
+    font-family: 'Poppins', sans-serif; /* Added a different font for better readability */
+    font-weight: 600; /* Slightly bolder for better contrast */
+}
+
+.nav-links .btn {
+    padding: 10px 15px;
+    background: #ffcc00;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+.hero {
+    background: #0288d1; /* Blue */
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px; /* Larger title for better visual impact */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* Make title bold */
+}
+
+.hero .btn-primary {
+    background: #ffcc00;
+    padding: 12px 20px;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* About Section */
+.about {
+    background: #b3e5fc; /* Light Blue */
+    padding: 50px 0;
+}
+
+.about h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    color: #00796b; /* Dark Green for contrast */
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.stat-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 36px; /* Larger numbers for emphasis */
+}
+
+/* Doctors Section */
+.doctors {
+    background: white;
+    padding: 50px 0;
+}
+
+.doctor-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.doctor-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px); /* Added hover effect for a modern feel */
+}
+
+.doctor-card img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.doctor-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* Contact Section */
+.contact {
+    background: #e1f5fe; /* Very Light Blue */
+    padding: 40px 0;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.info-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.info-box i {
+    font-size: 24px;
+    color: #0288d1;
+}
+
+.info-box p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+/* Footer */
+.footer {
+    background: #00796b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.logo i {
+    font-size: 40px;
+    color: white;
+    margin-left: 20px;
+}
+
+
+	/* Paragraph Styling */
+p {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    font-weight: 400; /* Normal weight for readability */
+}
+

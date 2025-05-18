@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="text-primary">🔄 Update Stock for {{ medicine.name }}</h3>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label>New Stock:</label>
+      <input type="number" name="stock" class="form-control" value="{{ medicine.stock }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="{% url 'dashboard:staff_dashboard' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

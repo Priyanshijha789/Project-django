@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice - Order #{{ payment.order.id }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f9ff;
+            color: #1b3b6f;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 91, 187, 0.1);
+            padding: 30px;
+        }
+        .invoice-header {
+            border-bottom: 2px solid #007bff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+        .invoice-title {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .info-label {
+            font-weight: 500;
+        }
+        .icon {
+            color: #007bff;
+            margin-right: 8px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <div class="invoice-header d-flex justify-content-between align-items-center">
+            <div class="invoice-title"><i class="bi bi-receipt icon"></i>Invoice</div>
+            <div><strong>Order #{{ payment.order.id }}</strong></div>
+        </div>
+
+        <div class="mb-3">
+            <p><i class="bi bi-person icon"></i><span class="info-label">Patient:</span> {{ payment.patient.username }}</p>
+            <p><i class="bi bi-cash-coin icon"></i><span class="info-label">Amount Paid:</span> ₹{{ payment.amount }}</p>
+            <p><i class="bi bi-calendar-check icon"></i><span class="info-label">Date:</span> {{ payment.date|date:"F j, Y, g:i a" }}</p>
+            <p><i class="bi bi-truck icon"></i><span class="info-label">Payment Method:</span> {{ payment.order.get_payment_method_display }}</p>
+            <p><i class="bi bi-box-seam icon"></i><span class="info-label">Order Status:</span> {{ payment.order.get_status_display }}</p>
+        </div>
+
+        <hr>
+
+        <div class="text-end">
+            <h5>Total: <strong>₹{{ payment.amount }}</strong></h5>
+        </div>
+
+        <div class="footer">
+            Thank you for choosing our service. Wishing you good health!
+        </div>
+    </div>
+</body>
+</html>

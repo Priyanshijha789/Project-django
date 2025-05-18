@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-primary mb-4">💳 All Bills</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-info">
+      <tr>
+        <th>Patient</th>
+        <th>Amount</th>
+        <th>Issued On</th>
+        <th>Details</th>
+        <th>Issued By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bill in bills %}
+      <tr>
+        <td>{{ bill.patient.user.username }}</td>
+        <td>₹{{ bill.amount }}</td>
+        <td>{{ bill.date_issued }}</td>
+        <td>{{ bill.details }}</td>
+        <td>{{ bill.issued_by.username }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

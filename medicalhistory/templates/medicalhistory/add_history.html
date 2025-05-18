@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-notes-medical"></i> Add Medical History for <span class="text-warning">{{ patient.user.username }}</span></h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_diagnosis" class="form-label"><i class="fas fa-stethoscope"></i> Diagnosis</label>
+                    {{ form.diagnosis }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_prescription" class="form-label"><i class="fas fa-pills"></i> Prescription</label>
+                    {{ form.prescription }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_notes" class="form-label"><i class="fas fa-clipboard"></i> Notes (optional)</label>
+                    {{ form.notes }}
+                </div>
+                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save History</button>
+                <a href="{% url 'medicalhistory:view_history' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to History</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

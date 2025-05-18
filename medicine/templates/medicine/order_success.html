@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+  <div class="alert alert-success shadow-sm p-4 rounded">
+    <h2><i class="bi bi-check2-circle"></i> Order Placed Successfully!</h2>
+    <p>Your Order ID: <strong>{{ order.id }}</strong></p>
+    <p>Total Paid: <strong>₹{{ order.total_amount }}</strong></p>
+    <a href="{% url 'medicine_store' %}" class="btn btn-outline-primary mt-3">
+      <i class="bi bi-arrow-left-circle"></i> Back to Store
+    </a>
+  </div>
+</div>
+{% endblock %}

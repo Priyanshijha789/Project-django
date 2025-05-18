@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary">🏥 My Admitted Patients</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-primary">
+      <tr>
+        <th>Patient</th>
+        <th>Room</th>
+        <th>Admitted On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for adm in admissions %}
+      <tr>
+        <td>{{ adm.patient.user.username }}</td>
+        <td>{{ adm.room_number }}</td>
+        <td>{{ adm.admission_date }}</td>
+        <td>
+          <a href="{% url 'doctors:request_discharge' adm.id %}" class="btn btn-sm btn-danger">Request Discharge</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

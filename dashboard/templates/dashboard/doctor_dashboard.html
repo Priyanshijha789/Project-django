@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+	.main-content {
+            margin-left: 150px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+		
+
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <nav class="col-md-2 col-lg-2 d-md-block bg-dark text-white sidebar">
+            <div class="position-sticky p-3">
+                <h3 class="text-center text-white">Welcome</h3>
+<h5 class="mt-3 text-white text-uppercase text-center">
+    <b>👩‍⚕️DR.{{ doctor_name }}</b>
+</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="#">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <i class="fas fa-user-md"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <i class="fas fa-calendar-check"></i> Appointments
+                        </a>
+                    </li>
+					<li class="nav-item">
+    <a class="nav-link" href="{% url 'request_medicine' %}">➕ Request Medicine</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link text-white" href="{% url 'doctors:doctor_admissions' %}">
+    🏥 Admitted Patients
+  </a>
+</li>
+<li class="nav-item">
+                        <a class="nav-link text-danger" href="{% url 'logout' %}">🚪 Logout</a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+            <h2 class="text-center mt-3">👨‍⚕️ Doctor Dashboard</h2>
+
+            <!-- Stats Cards -->
+            <div class="row my-4">
+                <div class="col-md-3">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5>Total Appointments</h5>
+                            <h3>{{ total_appointments }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5>Approved</h5>
+                            <h3>{{ approved_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-warning">
+                        <div class="card-body">
+                            <h5>Pending</h5>
+                            <h3>{{ pending_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger">
+                        <div class="card-body">
+                            <h5>Rejected</h5>
+                            <h3>{{ rejected_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Table -->
+            <div class="table-responsive mt-4">
+                <table class="table">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Appointment Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments %}
+                        <tr>
+                            <td>{{ appointment.patient.username }}</td>
+                            <td>{{ appointment.date }}</td>
+                            <td>
+                                {% if appointment.status == "Pending" %}
+                                    <span class="badge bg-warning text-dark">{{ appointment.status }}</span>
+                                {% elif appointment.status == "Approved" %}
+                                    <span class="badge bg-success">{{ appointment.status }}</span>
+                                {% else %}
+                                    <span class="badge bg-danger">{{ appointment.status }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if appointment.status == "Pending" %}
+                                    <a href="{% url 'doctors:approve' appointment.id %}" class="btn btn-success btn-sm me-2">✅ Approve</a>
+                                    <a href="{% url 'doctors:reject' appointment.id %}" class="btn btn-danger btn-sm">❌ Reject</a>
+                                {% else %}
+                                    <span class="badge bg-secondary">No Action</span>
+                                {% endif %}
+                            </td>
+							<td>
+        <a class="btn btn-sm btn-success" href="{% url 'medicalhistory:add_history' appointment.patient.patient_profile.id %}">Add History</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'medicalhistory:view_history' %}">View History</a>
+      </td>
+
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">No Appointments Found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}

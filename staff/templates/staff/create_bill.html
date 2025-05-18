@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-primary mb-4">🧾 Create Bill</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Create Bill</button>
+    <a href="{% url 'staff:bill_list' %}" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+{% endblock %}

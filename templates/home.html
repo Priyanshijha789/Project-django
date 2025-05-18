@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Hospital</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap JS (Requires Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+	<style>
+        /* Slow down text animation */
+        .carousel-caption h5, .carousel-caption p {
+            animation-duration: 3s; /* Slow down text appearance */
+        }
+		/* Adjust Image Height */
+        .carousel-item img {
+            height: 500px; /* Adjust this value for desired image height */
+            object-fit: cover; /* Ensure the images maintain their aspect ratio and fill the space */
+        }
+
+        /* Change Font Style for Text */
+        .carousel-caption h5 {
+            font-family: 'Arial', sans-serif; /* Change font family */
+            font-size: 2.5rem; /* Adjust font size */
+            font-weight: bold; /* Optional: make text bold */
+        }
+
+        .carousel-caption p {
+            font-family: 'Georgia', serif; /* Change font family */
+            font-size: 1.2rem; /* Adjust font size */
+            font-style: italic; /* Optional: make text italic */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="bi bi-hospital" style="font-size: 40px; color: white;"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="{% url 'dashboard:doctor_dashboard' %}">Doctor</a></li>
+            <li><a href="#contact">Contact</a></li>
+            
+			
+
+            <li><a href="{% url 'login' %}" class="btn">Login</a></li>
+            <li><a href="{% url 'signup' %}" class="btn">Signup</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/hospital-banner1.jpg' %}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Angel Hospital</h5>
+        <p>Healing with compassion , caring with love</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/hospital-banner2.png' %}"class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Angel Hospital</h5>
+        <p>Healing with compassion , caring with love</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/hospital-banner3.png' %}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Angel Hospital</h5>
+        <p>Healing with compassion , caring with love</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <!-- About Us Section -->
+    <section id="about" class="about hidden">
+        <div class="container">
+            <h2>About Angel Hospital</h2>
+            <p>Providing the best healthcare for over 20 years.</p>
+			<p>Angel Hospital Ltd. in Kanpur is the best hospital in Kanpur (Forrd Hospital) with a capacity of 100 beds. Established in 2004, Angel Hospital comprises six stories with a total covered area of more than 30,000 sq. ft. A friendly but Modern Reception, an Emergency and Daycare area with (4 + 3) beds, 4 O.T.,12 Consultation Chambers and an intricately carved out Patient-waiting area on a centrally air-conditioned ground floor are the hallmarks of this hospital. Super Deluxe, Deluxe, Private and Semi-Private Wards and well-illuminated spacious air-conditioned Economy wards are located on 1st, 2nd & 4th floor. Angel Hospital is located centrally in Gomti Nagar, Kanpur. This Hospital provides the best patient care facilities in Kanpur.</p>
+            <div class="stats">
+                <div class="stat-box"><i class="fas fa-user-md"></i> <h3>50+</h3> <p>Expert Doctors</p></div>
+                <div class="stat-box"><i class="fas fa-procedures"></i> <h3>200+</h3> <p>Patients Daily</p></div>
+                <div class="stat-box"><i class="fas fa-hospital"></i> <h3>100+</h3> <p>Hospital Rooms</p></div>
+                <div class="stat-box"><i class="fas fa-heartbeat"></i> <h3>5000+</h3> <p>Happy Patients</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="doctors hidden">
+        <div class="container">
+            <h2>Meet Our Doctors</h2>
+            <div class="doctor-list">
+                <div class="doctor-card wow fadeIn">
+                    <img src="{% static 'images/doctor1.jpg' %}" alt="Doctor">
+                    <h3>Dr.AmanKumar</h3>
+                    <p>Cardiologist</p>
+                </div>
+                <div class="doctor-card wow fadeIn" data-wow-delay="0.2s">
+                    <img src="{% static 'images/doctor2.jpg' %}" alt="Doctor">
+                    <h3>Dr.Priya Sharma</h3>
+                    <p>Neurologist</p>
+                </div>
+                <div class="doctor-card wow fadeIn" data-wow-delay="0.4s">
+                    <img src="{% static 'images/doctor3.jpg' %}" alt="Doctor">
+                    <h3>Dr. Pallavi Mehra</h3>
+                    <p>Orthopedic</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact hidden">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="info-box"><i class="fas fa-phone-alt"></i><p>+91 9876543210</p></div>
+                <div class="info-box"><i class="fas fa-envelope"></i><p>contact@angelhospital.com</p></div>
+                <div class="info-box"><i class="fas fa-map-marker-alt"></i><p>Kanpur, India</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Angel Hospital. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+        document.addEventListener("scroll", function () {
+            let elements = document.querySelectorAll(".hidden");
+            let scrollY = window.scrollY;
+            elements.forEach((el) => {
+                if (el.offsetTop < scrollY + window.innerHeight - 100) {
+                    el.classList.add("show");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
